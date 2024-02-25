@@ -3,12 +3,14 @@ import express from "express";
 import * as bodyParser from "body-parser";
 import {tutorialesRouter} from "./routes/tutorialesRouter";
 import {db} from "./db";
+import { comentariosRouter } from "./routes/comentariosRouter";
 
 const app = express();
 dotenv.config();
 
 app.use(bodyParser.json());
 app.use("/tutoriales", tutorialesRouter);
+app.use("/comentarios", comentariosRouter);
 
 db.connect((err)=>{
     if (err){

@@ -31,10 +31,12 @@ const express_1 = __importDefault(require("express"));
 const bodyParser = __importStar(require("body-parser"));
 const tutorialesRouter_1 = require("./routes/tutorialesRouter");
 const db_1 = require("./db");
+const comentariosRouter_1 = require("./routes/comentariosRouter");
 const app = (0, express_1.default)();
 dotenv.config();
 app.use(bodyParser.json());
 app.use("/tutoriales", tutorialesRouter_1.tutorialesRouter);
+app.use("/comentarios", comentariosRouter_1.comentariosRouter);
 db_1.db.connect((err) => {
     if (err) {
         console.log("Database connection error");

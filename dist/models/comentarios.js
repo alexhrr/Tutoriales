@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.borrar = exports.update = exports.create = void 0;
+exports.findAll = exports.borrar = exports.update = exports.create = void 0;
 const db_1 = require("../db");
 const create = (comentarios, callback) => {
     const queryString = "insert into comentarios (tutorial_id, contenido) values (?,?);";
@@ -35,3 +35,23 @@ const borrar = (comentarioId, callback) => {
     });
 };
 exports.borrar = borrar;
+const findAll = (tutorial_id, callback) => {
+    const queryString = "select * from comentarios where tutorial_id =?";
+    db_1.db.query(queryString, tutorial_id, (err, result) => {
+        if (err) {
+            callback(err);
+        }
+        const rows = result;
+        const comentarios = [];
+        rows.forEach(row => {
+            const comentario = {
+                comentario_id: row.comentario_id,
+                tutorial_id: row.tutorial_id,
+                contenido: row.contenido
+            };
+            comentarios.push(comentario);
+        });
+        callback(null, comentarios);
+    });
+};
+exports.findAll = findAll;

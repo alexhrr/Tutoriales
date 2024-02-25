@@ -45,4 +45,29 @@ export const borrar = (comentarioId: Number, callback:Function)=>{
     );
 };
 
+export const findAll =(tutorial_id: Number, callback:Function)=>{
+    const queryString ="select * from comentarios where tutorial_id =?";
+    db.query(
+        queryString,
+        tutorial_id,
+        (err, result)=>{
+            if (err) {callback(err)}
+            const rows = <RowDataPacket[]>result;
+            const comentarios: Comentarios[]=[];
+            
+            rows.forEach(row=>{
+                const comentario: Comentarios={
+                    comentario_id: row.comentario_id,
+                    tutorial_id: row.tutorial_id,
+                    contenido: row.contenido
+                };
+
+                comentarios.push(comentario);
+            });
+            callback(null,comentarios);
+        }
+
+    )
+};
+
 

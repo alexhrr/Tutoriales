@@ -15,12 +15,13 @@ export const findAll = (callback:Function) =>{
             const tutoriales: Tutoriales[]= [];
 
             rows.forEach (row =>{
-                const tutoriales: Tutoriales = {
+                const tutorial: Tutoriales = {
                     tutorial_id: row.tutorial_id,
                     titulo: row.titulo,
                     descripcion: row.descripcion,
                     fecha: row.fecha
                 };
+                tutoriales.push(tutorial)
             });
             callback(null, tutoriales);
 

@@ -48,3 +48,12 @@ tutorialesRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(200).json({ "data": tutoriales });
     });
 }));
+tutorialesRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const newTutorial = req.body;
+    tutorialesModel.create(newTutorial, (err, tutorialId) => {
+        if (err) {
+            return res.status(500).json({ "errorMessage": err.message });
+        }
+        res.status(500).json({ "TutorialId": tutorialId });
+    });
+}));

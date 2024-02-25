@@ -14,4 +14,15 @@ tutorialesRouter.get("/", async (req: Request, res: Response)=>{
     })
 });
 
+
+tutorialesRouter.post("/", async(req: Request, res:Response)=>{
+    const newTutorial: Tutoriales=req.body;
+    tutorialesModel.create(newTutorial,(err: Error, tutorialId:number)=>{
+        if(err){
+            return res.status(500).json({"errorMessage":err.message});
+        }
+        res.status(500).json({"TutorialId" : tutorialId})
+    })
+})
+
 export{tutorialesRouter};

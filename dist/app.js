@@ -45,5 +45,5 @@ db_1.db.connect((err) => {
 });
 app.listen(process.env.PORT, () => {
     console.log("Node server started running");
-    console.log("Go to http://${process.env.HOST}:${process.env.PORT}");
+    console.log(`Go to http://${process.env.HOST}:${process.env.PORT}`);
 });
